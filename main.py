@@ -34,6 +34,16 @@ def get_player_score(username):
 def remove_user(username):
     user_info = next((user for user in data["users"] if user["username"] == username), None)
     data["users"].remove(user_info)
+
+
+@hug.get('/update_player_score')
+def update_player_score(username, score:hug.types.number=1):
+    """Gets specified player's score"""
+    user_info = next((user for user in data["users"] if user["username"] == username), None)
+    user_info["score"] = score
+    with open("data.json", "w") as f:
+        json.dump(data, f, indent=4)
+    return("Score modified sucessfully!")
     with open("data.json", "w") as f:
         json.dump(data, f, indent=4)
     return("User sucessfully removed!")
