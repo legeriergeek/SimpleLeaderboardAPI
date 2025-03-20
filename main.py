@@ -26,10 +26,25 @@ def get_user_info(username):
 
 @hug.get('/get_player_score')
 def get_player_score(username):
-    """Gest specified player's score"""
+    """Gets specified player's score"""
     user_info = next((user for user in data["users"] if user["username"] == username), None)
     return(user_info["score"])
 
+@hug.get('/get_player_score')
+def get_player_score(username):
+    """Gets specified player's score"""
+    user_info = next((user for user in data["users"] if user["username"] == username), None)
+    return(user_info["score"])
+    
+
+@hug.get('/update_player_score')
+def get_player_score(username, score:hug.types.number=1):
+    """Gets specified player's score"""
+    user_info = next((user for user in data["users"] if user["username"] == username), None)
+    user_info["score"] = score
+    with open("data.json", "w") as f:
+        json.dump(data, f, indent=4)
+    return("Score modified sucessfully!")
 
 @hug.get('/remove_user')
 def remove_user(username):
