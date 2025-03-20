@@ -15,21 +15,25 @@ def add_player(username, score:hug.types.number=1):
 
 @hug.get('/get_users')
 def get_users():
+    """Gets all users in the 'db'"""
     return(data)
 
 @hug.get('/get_user_info')
 def get_user_info(username):
+    """Gets user info based on the username"""
     user_info = next((user for user in data["users"] if user["username"] == username), None)
     return(user_info)
 
 @hug.get('/get_player_score')
 def get_player_score(username):
+    """Gest specified player's score"""
     user_info = next((user for user in data["users"] if user["username"] == username), None)
     return(user_info["score"])
 
 
 @hug.get('/remove_user')
 def remove_user(username):
+    """Removes specified user"""
     user_info = next((user for user in data["users"] if user["username"] == username), None)
     data["users"].remove(user_info)
     with open("data.json", "w") as f:
