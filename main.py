@@ -7,8 +7,9 @@ with open("data.json", "r") as f:
 @hug.get('/add_player')
 def add_player(username, score:hug.types.number=1):
     """Adds player to the 'db'"""
-    if user for user in data["users"] if user["username"] == username:
+    if any(user for user in data["users"] if user["username"] == username):
         return("User already exists! Please retry with a valid username.")
+        break
     new_user = {"username": username, "score": score}
     data["users"].append(new_user)
     with open("data.json", "w") as f:
