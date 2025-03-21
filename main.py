@@ -44,6 +44,4 @@ def update_player_score(username, score:hug.types.number=1):
     with open("data.json", "w") as f:
         json.dump(data, f, indent=4)
     return("Score modified sucessfully!")
-    with open("data.json", "w") as f:
-        json.dump(data, f, indent=4)
-    return("User sucessfully removed!")
+
